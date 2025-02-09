@@ -1,0 +1,58 @@
+/* Navbar.css */
+
+/* Container for the navbar */
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #dac36f;
+    color: rgb(55, 29, 29);
+    padding: 15px 20px;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Title styling */
+.navbar-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Icon section */
+.icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.icon-container:hover {
+    transform: scale(1.1);
+}
+
+/* Icon size and spacing */
+.icon-container svg {
+    font-size: 2rem;
+    color: rgb(55, 29, 29);
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+    .navbar-container {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .navbar-title {
+        font-size: 1.25rem;
+    }
+
+    .icon-container {
+        margin-top: 10px;
+    }
+}

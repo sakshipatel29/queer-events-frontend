@@ -1,0 +1,155 @@
+/* AddEventForm.css */
+
+.add-event-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.form-header h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.event-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 1rem;
+    color: #555;
+}
+
+.form-group input {
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    transition: border 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: rgb(55, 29, 29);
+    outline: none;
+}
+
+.time-group {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.time-group .form-group {
+    flex: 1;
+}
+
+.address-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.address-group input {
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    transition: border 0.3s ease;
+}
+
+.address-group input:focus {
+    border-color: rgb(55, 29, 29);
+    outline: none;
+}
+
+.city-postcode-group {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.city-postcode-group input {
+    flex: 1;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    transition: border 0.3s ease;
+}
+
+.city-postcode-group input:focus {
+    border-color: rgb(55, 29, 29);
+    outline: none;
+}
+
+.form-group p {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.price-input-group {
+    display: flex;
+    align-items: center;
+}
+
+.currency-sign {
+    font-size: 1.25rem;
+    margin-right: 5px;
+}
+
+.submit-btn {
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    background-color: rgb(55, 29, 29);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: rgb(11, 3, 3);
+}
+
+.submit-group {
+    text-align: center;
+}
+
+.form-group p {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+@media (max-width: 768px) {
+    .add-event-container {
+        padding: 10px;
+    }
+
+    .event-form {
+        padding: 15px;
+    }
+
+    .time-group {
+        flex-direction: column;
+    }
+
+    .city-postcode-group {
+        flex-direction: column;
+    }
+}
