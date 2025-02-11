@@ -26,41 +26,7 @@ const AddEventForm = () => {
             [name]: value
         });
     };
-
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     console.log(eventInput);
-    //     const { eventName, description, eventDate, startTime, endTime, addressLine1, addressLine2, city, postcode, eventURL, price} 
-    //     = eventInput;
-
-    //     if (eventName && description && eventDate && startTime && endTime && addressLine1 && city && postcode && eventURL && price){
-    //         const date = new Date(eventDate).toISOString();
-    //         const event = {
-    //             organisationName: "RESA QUAS",
-    //             eventName: eventName ,
-    //             description: description,
-    //             eventDate: date ,
-    //             startTime: startTime,
-    //             endTime: endTime,
-    //             location: {
-    //                 addressLine1: addressLine1,
-    //                 addressLine2: addressLine2,
-    //                 city: city,
-    //                 postcode: postcode,
-    //             },
-    //             eventURL: eventURL,
-    //             price: Number(price),
-    //         }
-
-    //         try {
-    //             const res = await axios.post(process.env.REACT_APP_EVENTS, event);
-    //             if(res.status===201) navigate("/");
-    //         } catch (error) {
-    //             console.log(error);
-    //         }
-
-    //     }
-    // };
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         const { eventName, description, eventDate, startTime, endTime, addressLine1, addressLine2, city, postcode, eventURL, price } = eventInput;
@@ -81,7 +47,7 @@ const AddEventForm = () => {
                     postcode: postcode,
                 },
                 eventURL: eventURL,
-                price: Number(price), // Ensure price is a number, not a string
+                price: Number(price),
             }
     
             try {
@@ -193,14 +159,6 @@ const AddEventForm = () => {
                 </div>
                 <div className="form-group">
                     <label htmlFor="eventURL">Event Registration Link</label>
-                    {/* <input
-                        id="eventURL"
-                        name="eventURL"
-                        type="url"
-                        placeholder="Event URL link"
-                        required
-                        onChange={handleInput}
-                    /> */}
                     <input
                         id="eventURL"
                         name="eventURL"
