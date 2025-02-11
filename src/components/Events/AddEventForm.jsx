@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import './AddEventForm.css';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const AddEventForm = () => {
+    const navigate = useNavigate();
     const [eventInput, setEventInput] = useState({
         eventName: "",
         description: "",
@@ -24,11 +27,72 @@ const AddEventForm = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     console.log(eventInput);
+    //     const { eventName, description, eventDate, startTime, endTime, addressLine1, addressLine2, city, postcode, eventURL, price} 
+    //     = eventInput;
+
+    //     if (eventName && description && eventDate && startTime && endTime && addressLine1 && city && postcode && eventURL && price){
+    //         const date = new Date(eventDate).toISOString();
+    //         const event = {
+    //             organisationName: "RESA QUAS",
+    //             eventName: eventName ,
+    //             description: description,
+    //             eventDate: date ,
+    //             startTime: startTime,
+    //             endTime: endTime,
+    //             location: {
+    //                 addressLine1: addressLine1,
+    //                 addressLine2: addressLine2,
+    //                 city: city,
+    //                 postcode: postcode,
+    //             },
+    //             eventURL: eventURL,
+    //             price: Number(price),
+    //         }
+
+    //         try {
+    //             const res = await axios.post(process.env.REACT_APP_EVENTS, event);
+    //             if(res.status===201) navigate("/");
+    //         } catch (error) {
+    //             console.log(error);
+    //         }
+
+    //     }
+    // };
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(eventInput);
-        // Logic for form submission goes here
+        const { eventName, description, eventDate, startTime, endTime, addressLine1, addressLine2, city, postcode, eventURL, price } = eventInput;
+    
+        if (eventName && description && eventDate && startTime && endTime && addressLine1&& addressLine2  && city && postcode && eventURL && price) {
+            const date = new Date(eventDate).toISOString();
+            const event = {
+                organisationName: "RESA QUAS",
+                eventName: eventName,
+                description: description,
+                eventDate: date,
+                startTime: startTime,
+                endTime: endTime,
+                location: {
+                    addressLine1: addressLine1,
+                    addressLine2: addressLine2,
+                    city: city,
+                    postcode: postcode,
+                },
+                eventURL: eventURL,
+                price: Number(price), // Ensure price is a number, not a string
+            }
+    
+            try {
+                const res = await axios.post("http://localhost:4000/events", event);
+                if (res.status === 201) navigate("/");
+            } catch (error) {
+                console.error(error.response?.data || error.message);
+            }
+        }
     };
+    
 
     return (
         <div className="add-event-container">
@@ -120,7 +184,7 @@ const AddEventForm = () => {
                         <input
                             id="postcode"
                             name="postcode"
-                            type="number"
+                            type="string"
                             placeholder="Postcode"
                             required
                             onChange={handleInput}
@@ -129,11 +193,20 @@ const AddEventForm = () => {
                 </div>
                 <div className="form-group">
                     <label htmlFor="eventURL">Event Registration Link</label>
-                    <input
+                    {/* <input
                         id="eventURL"
                         name="eventURL"
                         type="url"
                         placeholder="Event URL link"
+                        required
+                        onChange={handleInput}
+                    /> */}
+                    <input
+                        id="eventURL"
+                        name="eventURL"
+                        type="url"
+                        pattern="https?://.*"
+                        placeholder="https://example.com"
                         required
                         onChange={handleInput}
                     />
