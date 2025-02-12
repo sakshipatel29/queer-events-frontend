@@ -13,10 +13,10 @@ const EventSchedule = ({events}) => {
                 eventDate = {item.eventDate}
                 startTime = {item.startTime}
                 endTime = {item.endTime}
-                addressLine1 = {item.addressLine1}
-                addressLine2 = {item.addressLine2}
-                city = {item.city}
-                postcode = {item.postcode}
+                addressLine1 = {item.location.addressLine1}
+                addressLine2 = {item.location.addressLine2}
+                city = {item.location.city}
+                postcode = {item.location.postcode}
                 eventURL = {item.eventURL}
                 price = {item.price}
             />

@@ -1,0 +1,114 @@
+.event-card {
+    background-color: #7ddba7;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 600px;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .event-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .event-card .price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #27ae60;
+    margin-bottom: 15px;
+  }
+  
+  .event-card .event-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .event-card .event-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #2c3e50;
+    text-transform: capitalize;
+    margin: 0;
+  }
+  
+  .event-card .event-description {
+    font-size: 16px;
+    color: #7f8c8d;
+    margin: 15px 0;
+    line-height: 1.6;
+  }
+  
+  .event-card .event-address {
+    font-size: 14px;
+    color: #34495e;
+    margin-bottom: 15px;
+    line-height: 1.5;
+  }
+  
+  .event-card .event-details {
+    font-size: 14px;
+    color: #7f8c8d;
+    margin: 10px 0;
+  }
+  
+  .event-card .event-url {
+    font-size: 16px;
+    color: #2980b9;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 20px;
+    display: block;
+  }
+  
+  .event-card .event-url:hover {
+    color: #3498db;
+    text-decoration: underline;
+  }
+  
+  .event-card .event-dates-time {
+    font-size: 14px;
+    color: #34495e;
+    margin-bottom: 10px;
+  }
+  
+  .event-card .event-location {
+    font-size: 14px;
+    color: #34495e;
+    margin-bottom: 15px;
+  }
+  
+  .event-card .event-header p,
+  .event-card .event-details p {
+    margin: 0;
+  }
+  
+  .event-card .event-header {
+    border-bottom: 1px solid #ecf0f1;
+    padding-bottom: 10px;
+  }
+  
+  .event-card .event-title {
+    color: #2980b9;
+  }
+  
+  .event-card .event-description {
+    font-style: italic;
+  }
+  
+  .event-card .event-location p,
+  .event-card .event-dates-time p {
+    font-weight: 500;
+  }
+  
+  .event-card .event-title,
+  .event-card .event-description,
+  .event-card .event-details {
+    text-align: left;
+  }
+  
