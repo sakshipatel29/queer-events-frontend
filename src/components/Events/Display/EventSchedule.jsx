@@ -4,6 +4,7 @@ import EventCard from './EventCard';
 const EventSchedule = ({events}) => {
   return (
     <div>
+      <h3>{new Date().toLocaleString("default",{ month: "long"})}</h3>
         {events.map(item => 
             <EventCard 
                 key = {item._id}
