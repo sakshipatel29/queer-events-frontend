@@ -17,57 +17,39 @@
 
 // export default Hero;
 
-import React, { useState } from "react";
+
+import React from "react";
 import { BsCaretDownFill } from "react-icons/bs";
 
-const illinoisCities = [
-  "Chicago", "Aurora", "Naperville", "Joliet", "Rockford", "Springfield",
-  "Peoria", "Elgin", "Waukegan", "Champaign", "Bloomington", "Decatur",
-  "Evanston", "Schaumburg", "Bolingbrook"
-];
-
+const cities = ["Chicago", "Springfield", "Naperville", "Rockford", "Peoria"];
 const months = [
   "January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
 
-const Hero = ({ selectedCity, setSelectedCity, selectedMonth, setSelectedMonth }) => {
-  const [showCityDropdown, setShowCityDropdown] = useState(false);
-  const [showMonthDropdown, setShowMonthDropdown] = useState(false);
-
+const Hero = ({ setSelectedCity, setSelectedMonth }) => {
   return (
     <div>
+      <h1>Upcoming events for:</h1>
       <div>
-        <h1>Upcoming events for:</h1>
-        <div>
-          <h3 onClick={() => setShowCityDropdown(!showCityDropdown)}>
-            {selectedCity || "Select a city"} <BsCaretDownFill />
-          </h3>
-          {showCityDropdown && (
-            <ul>
-              {illinoisCities.map((city) => (
-                <li key={city} onClick={() => { setSelectedCity(city); setShowCityDropdown(false); }}>
-                  {city}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+        <h3>City:</h3>
+        <select onChange={(e) => setSelectedCity(e.target.value)}>
+          <option value="">All Cities</option>
+          {cities.map(city => (
+            <option key={city} value={city}>{city}</option>
+          ))}
+        </select>
+        <BsCaretDownFill />
       </div>
-
       <div>
-        <h4 onClick={() => setShowMonthDropdown(!showMonthDropdown)}>
-          {selectedMonth || "Select a month"} <BsCaretDownFill />
-        </h4>
-        {showMonthDropdown && (
-          <ul>
-            {months.map((month) => (
-              <li key={month} onClick={() => { setSelectedMonth(month); setShowMonthDropdown(false); }}>
-                {month}
-              </li>
-            ))}
-          </ul>
-        )}
+        <h3>Month:</h3>
+        <select onChange={(e) => setSelectedMonth(e.target.value)}>
+          <option value="">All Months</option>
+          {months.map(month => (
+            <option key={month} value={month}>{month}</option>
+          ))}
+        </select>
+        <BsCaretDownFill />
       </div>
     </div>
   );

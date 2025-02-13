@@ -98,14 +98,18 @@
 // export default EventSchedule;
 
 
+
 import React from "react";
 import EventCard from "./EventCard";
 
 const EventSchedule = ({ events, selectedCity, selectedMonth }) => {
-  const filteredEvents = events.filter(event =>
-    (!selectedCity || event.city === selectedCity) &&
-    (!selectedMonth || new Date(event.eventDate).toLocaleString("en-US", { month: "long" }) === selectedMonth)
-  );
+  const filteredEvents = events.filter(event => {
+    const eventMonth = new Date(event.eventDate).toLocaleString("en-US", { month: "long" });
+    return (
+      (!selectedCity || event.city === selectedCity) &&
+      (!selectedMonth || eventMonth === selectedMonth)
+    );
+  });
 
   return (
     <div>
@@ -114,7 +118,7 @@ const EventSchedule = ({ events, selectedCity, selectedMonth }) => {
           <EventCard key={event.id} {...event} />
         ))
       ) : (
-        <p>No events found for {selectedCity} in {selectedMonth}</p>
+        <p>No events found {selectedCity ? `in ${selectedCity}` : ""} {selectedMonth ? `for ${selectedMonth}` : ""}</p>
       )}
     </div>
   );
