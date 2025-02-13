@@ -58,6 +58,7 @@
 
 import React, { useState } from "react";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
+import './EventCard.css';
 
 const EventCard = ({ organisationName, eventName, description, eventDate, startTime, endTime, location, eventURL, price }) => {
   const [openModal, setOpenModal] = useState(false);
