@@ -59,7 +59,7 @@
 import React, { useState } from "react";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 
-const EventCard = ({ organisationName, eventName, description, eventDate, startTime, endTime, addressLine1, addressLine2, city, postcode, eventURL, price }) => {
+const EventCard = ({ organisationName, eventName, description, eventDate, startTime, endTime, location, eventURL, price }) => {
   const [openModal, setOpenModal] = useState(false);
   const date = new Date(eventDate).toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric" });
 
@@ -81,9 +81,9 @@ const EventCard = ({ organisationName, eventName, description, eventDate, startT
       </div>
 
       <div className="event-location">
-        <p>{addressLine1}</p>
-        <p>{addressLine2}</p>
-        <p>{city}, {postcode}</p>
+        <p>{location.addressLine1}</p>
+        <p>{location.addressLine2}</p>
+        <p>{location.city}, {location.postcode}</p>
       </div>
 
       <div className="event-dates-time">
