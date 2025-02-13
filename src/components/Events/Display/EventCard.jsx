@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './EventCard.css';
+import { AiOutlineDown, AiOutlineUp } from 'react-icons/ai';
 
 const EventCard = ({ organisationName, eventName, description, eventDate, startTime, endTime, addressLine1, addressLine2, city, postcode, eventURL, price }) => {
 
+    const [openmodal, setOpenModal] = useState(false);
     const date = new Date(eventDate).toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric" });
 
     let capitaliseText = eventName.split(" ");
@@ -21,8 +23,11 @@ const EventCard = ({ organisationName, eventName, description, eventDate, startT
                 <h3 className="event-title">{title}</h3>
             </div>
             <div className="event-description">
-                <p>{description}</p>
-            </div>
+                <div onClick={()=> setOpenModal(true)}>
+                {openmodal ? ( <><div onClick={() => setOpenModal(false)}><p>See Description</p> <AiOutlineUp /></div></>) : (<><div onClick={() => setOpenModal(true)}><p>See Description</p> <AiOutlineDown /></div></>)}
+                </div>
+                {openmodal && <p>{description}</p>}
+            </div>           
             <div className="event-location">
                 <p>{addressLine1}</p>
                 <p>{addressLine2}</p>
