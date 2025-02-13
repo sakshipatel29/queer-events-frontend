@@ -15,20 +15,22 @@
 
 // export default Home;
 
-import React, { useState } from "react";
-import Navbar from "../components/Navbar";
-import Hero from "../components/Hero";
-import EventSchedule from "../components/Events/Display/EventSchedule";
 
-const Home = ({ events }) => {
-  const [selectedCity, setSelectedCity] = useState("");
-  const [selectedMonth, setSelectedMonth] = useState("");
+import React from 'react';
+import Navbar from '../components/Navbar';
+import Hero from '../components/Hero';
+import EventSchedule from '../components/Events/Display/EventSchedule';
 
+const Home = ({ events, setSelectedCity, setSelectedMonth }) => {
   return (
     <div>
       <Navbar />
       <Hero setSelectedCity={setSelectedCity} setSelectedMonth={setSelectedMonth} />
-      <EventSchedule events={events} selectedCity={selectedCity} selectedMonth={selectedMonth} />
+      {events.length > 0 ? (
+        <EventSchedule events={events} />
+      ) : (
+        <p>No events found for the selected criteria.</p>
+      )}
     </div>
   );
 };
