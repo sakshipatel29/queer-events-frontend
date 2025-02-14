@@ -47,6 +47,7 @@ function App() {
   const [events, setEvents] = useState([]);
   const [selectedCity, setSelectedCity] = useState("");
   const [selectedMonth, setSelectedMonth] = useState("");
+  const [update, setUpdate] = useState(false);
 
   const getEvents = async () => {
     try {
@@ -56,6 +57,10 @@ function App() {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    getEvents()
+  }, [update]);
 
   // Filter events by selected city and month
   const filteredEvents = events.filter(event => {
@@ -76,7 +81,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home events={filteredEvents} setSelectedCity={setSelectedCity} setSelectedMonth={setSelectedMonth} />} />
-        <Route path='/add-event' element={<AddEvent />} />
+        <Route path='/add-event' element={<AddEvent setUpdate={setUpdate} />} />
       </Routes>
     </BrowserRouter>
   );

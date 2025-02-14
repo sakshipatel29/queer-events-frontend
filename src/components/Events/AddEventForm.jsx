@@ -3,7 +3,7 @@ import './AddEventForm.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const AddEventForm = () => {
+const AddEventForm = ({setUpdate}) => {
     const navigate = useNavigate();
     const [eventInput, setEventInput] = useState({
         eventName: "",
@@ -53,6 +53,7 @@ const AddEventForm = () => {
             try {
                 const res = await axios.post("http://localhost:4000/events", event);
                 if (res.status === 201) navigate("/");
+                setUpdate(true)
             } catch (error) {
                 console.error(error.response?.data || error.message);
             }
