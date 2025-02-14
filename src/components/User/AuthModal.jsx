@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { IoIosClose } from "react-icons/io";
 import { useRecoilState } from "recoil";
 import { authModalState } from '../../atoms/authModal';
+import './AuthModal.css';
 
 const AuthModal = () => {
     const [modalState, setModalState] = useRecoilState(authModalState);
@@ -27,53 +28,54 @@ const AuthModal = () => {
     }
 
     return (
-        <div>
+        <>
             {modalState.open && (
                 <>
-                <div>
-                    <div>
-                        <p>Login</p>
-                    </div>
-                    <div onClick={handleClose}>
-                        <IoIosClose />
-                    </div>
-                </div>
-                <div>
-                    <form>
-                        <div>
-                            <label>Email Address: </label>
-                            <input 
-                                id='email'
-                                name='email'
-                                type='text'
-                                placeholder='abc@example.com'
-                                autoComplete='abc@example.com'
-                                onChange={handleInput}
-                                required
-                            />
+                    <div className="auth-modal-overlay" onClick={handleClose}></div>
+                    <div className="auth-modal">
+                        <div className="auth-modal-header">
+                            <p>Login</p>
+                            <div className="auth-modal-close" onClick={handleClose}>
+                                <IoIosClose />
+                            </div>
                         </div>
-                        <div>
-                            <label>Password: </label>
-                            <input 
-                                id='password'
-                                name='password'
-                                type='password'
-                                placeholder='**********'
-                                autoComplete='current-password'
-                                onChange={handleInput}
-                                required
-                            />
+                        <div className="auth-modal-content">
+                            <form>
+                                <div>
+                                    <label>Email Address: </label>
+                                    <input 
+                                        id='email'
+                                        name='email'
+                                        type='text'
+                                        placeholder='abc@example.com'
+                                        autoComplete='abc@example.com'
+                                        onChange={handleInput}
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label>Password: </label>
+                                    <input 
+                                        id='password'
+                                        name='password'
+                                        type='password'
+                                        placeholder='**********'
+                                        autoComplete='current-password'
+                                        onChange={handleInput}
+                                        required
+                                    />
+                                </div>
+                            </form>
                         </div>
-                    </form>
-                    <div>
-                        <button>Login</button>
-                        <p>Request to become a Member!</p>
+                        <div className="auth-modal-buttons">
+                            <button>Login</button>
+                            <p>Request to become a Member!</p>
+                        </div>
                     </div>
-                </div>
                 </>
             )}
-        </div>
-    )
+        </>
+    );
 }
 
 export default AuthModal;
