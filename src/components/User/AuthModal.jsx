@@ -43,7 +43,7 @@ const AuthModal = () => {
                             <form>
                                 <div>
                                     <label>Email Address: </label>
-                                    <input 
+                                    <input
                                         id='email'
                                         name='email'
                                         type='text'
@@ -55,7 +55,7 @@ const AuthModal = () => {
                                 </div>
                                 <div>
                                     <label>Password: </label>
-                                    <input 
+                                    <input
                                         id='password'
                                         name='password'
                                         type='password'
