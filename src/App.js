@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import AddEvent from './pages/AddEvent';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Signup from './pages/Signup';
 
 function App() {
   const [events, setEvents] = useState([]);
@@ -43,6 +44,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home events={filteredEvents} setSelectedCity={setSelectedCity} setSelectedMonth={setSelectedMonth} />} />
         <Route path='/add-event' element={<AddEvent setUpdate={setUpdate} />} />
+        <Route path='/signup' element={<Signup />} />
       </Routes>
     </BrowserRouter>
   );

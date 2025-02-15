@@ -3,10 +3,11 @@ import { IoIosClose } from "react-icons/io";
 import { useRecoilState } from "recoil";
 import { authModalState } from '../../atoms/authModal';
 import './AuthModal.css';
+import { useNavigate } from 'react-router-dom';
 
 const AuthModal = () => {
+    const navigate = useNavigate();
     const [modalState, setModalState] = useRecoilState(authModalState);
-
     const [user, setUser] = useState({
         email: "",
         password: "",
@@ -25,6 +26,14 @@ const AuthModal = () => {
             ...user,
             [name]: value,
         })
+    }
+
+    const handleSignUp =() => {
+        setModalState(prev => ({
+            ...prev,
+            open: false,
+        }));
+        navigate("/signup");
     }
 
     return (
@@ -69,7 +78,9 @@ const AuthModal = () => {
                         </div>
                         <div className="auth-modal-buttons">
                             <button>Login</button>
-                            <p>Request to become a Member!</p>
+                            <div onClick={handleSignUp}>
+                                <p>Request to become a Member!</p>
+                            </div>
                         </div>
                     </div>
                 </>
