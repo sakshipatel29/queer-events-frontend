@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
+import './Signup.css';
 
 const Signup = () => {
     const [user, setUser] = useState({
@@ -8,26 +9,26 @@ const Signup = () => {
         password: "",
     })
     const handleInput = (e) => { 
-        const { name, value} = e.target();
+        const { name, value} = e.target;
         setUser({
             ...user,
             [name] : value,
         })
     };
     return (
-        <div>
+        <div className="signup-container">
             <Navbar />
-            <div>
+            <div className="signup-form">
+                <h3 className="signup-header">Sign Up Here</h3>
+                <p className="signup-description">
+                    If not an organizer, enter your name to appear alongside the event you may want to share.
+                </p>
                 <form>
                     <div>
-                        <h3>Sign Up here</h3>
-                    </div>
-                    <div>
                         <label>Name of Organisation:</label>
-                        <p>If not an organisor, individual's name to appear alongside the event you may want to share</p>
                         <input
                             id="username"
-                            name="username"
+                            name="name"
                             type="text"
                             placeholder="Sakshi Patel"
                             onChange={handleInput}
@@ -57,7 +58,7 @@ const Signup = () => {
                         />
                     </div>
                     <div>
-                        <button>Sign Up</button>
+                        <button className="signup-button">Sign Up</button>
                     </div>
                 </form>
             </div>
