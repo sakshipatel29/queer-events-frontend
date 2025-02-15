@@ -1,20 +1,45 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import './Signup.css';
+import axios from 'axios';
 
 const Signup = () => {
-    const [user, setUser] = useState({
+
+    const [newUser, setNewUser] = useState({
         name: "",
         email: "",
         password: "",
     })
+
+    const [errorMessage, setErrorMessage] = useState("");
+
     const handleInput = (e) => { 
         const { name, value} = e.target;
-        setUser({
-            ...user,
+        setNewUser({
+            ...newUser,
             [name] : value,
         })
     };
+
+    const handleSignUp = async (e) => {
+        e.preventDefault();
+        const { name, email, password} = newUser;
+
+        if( name && email && password ){
+            try {
+                const res = await axios.post(process.env.REACT_APP_SIGNUP, newUser);
+                setErrorMessage(res.data.message);
+                if(res.status === 200){
+                    console.log("success");
+                } 
+            } catch (error) {
+                console.log(error);
+            }
+        }else{
+            setErrorMessage("Please ensure all fields have valid values.");
+        }
+    }
+
     return (
         <div className="signup-container">
             <Navbar />
@@ -23,7 +48,7 @@ const Signup = () => {
                 <p className="signup-description">
                     If not an organizer, enter your name to appear alongside the event you may want to share.
                 </p>
-                <form>
+                <form method="POST">
                     <div>
                         <label>Name of Organisation:</label>
                         <input
@@ -57,8 +82,9 @@ const Signup = () => {
                             required
                         />
                     </div>
+                    {errorMessage && <p>{errorMessage}</p>}
                     <div>
-                        <button className="signup-button">Sign Up</button>
+                        <button className="signup-button" onClick={handleSignUp}>Sign Up</button>
                     </div>
                 </form>
             </div>
