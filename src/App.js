@@ -11,6 +11,10 @@ function App() {
   const [selectedCity, setSelectedCity] = useState("");
   const [selectedMonth, setSelectedMonth] = useState("");
   const [update, setUpdate] = useState(false);
+  const [registeredUser, setRegisteredUser] = useState({
+    name: "",
+    email: "",
+  })
 
   const getEvents = async () => {
     try {
@@ -44,7 +48,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home events={filteredEvents} setSelectedCity={setSelectedCity} setSelectedMonth={setSelectedMonth} />} />
         <Route path='/add-event' element={<AddEvent setUpdate={setUpdate} />} />
-        <Route path='/signup' element={<Signup />} />
+        <Route path='/signup' element={<Signup setRegisteredUser={setRegisteredUser}/>} />
       </Routes>
     </BrowserRouter>
   );

@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import './Signup.css';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
-const Signup = () => {
+const Signup = ({setRegisteredUser}) => {
 
+    const navigate = useNavigate();
     const [newUser, setNewUser] = useState({
         name: "",
         email: "",
@@ -29,6 +31,11 @@ const Signup = () => {
             try {
                 const res = await axios.post(process.env.REACT_APP_SIGNUP, newUser);
                 setErrorMessage(res.data.message);
+                setRegisteredUser({
+                    name: name,
+                    email: email,
+                })
+                navigate("/add-event");
                 if(res.status === 200){
                     console.log("success");
                 } 
