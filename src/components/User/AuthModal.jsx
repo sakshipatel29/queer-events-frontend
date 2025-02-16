@@ -4,6 +4,7 @@ import { useRecoilState } from "recoil";
 import { authModalState } from '../../atoms/authModal';
 import './AuthModal.css';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const AuthModal = () => {
     const navigate = useNavigate();
@@ -12,6 +13,7 @@ const AuthModal = () => {
         email: "",
         password: "",
     })
+    const [logInErrorMsg, setLogInErrorMsg] = useState("");
 
     const handleClose = () => {
         setModalState(prev => ({
@@ -34,6 +36,24 @@ const AuthModal = () => {
             open: false,
         }));
         navigate("/signup");
+    }
+
+    const handleLogIn = async (e) => {
+        e.preventDefault();
+
+        const { email, password } = user;
+
+        if( email && password ){
+            const res = await axios.post(process.env.REACT_APP_LOGIN, user);
+            setLogInErrorMsg(res.data.message);
+            if(res.data.user){
+                console.log(user);
+                setModalState(prev => ({
+                    ...prev,
+                    open: false,
+                }));
+            }
+        }
     }
 
     return (
@@ -77,7 +97,7 @@ const AuthModal = () => {
                             </form>
                         </div>
                         <div className="auth-modal-buttons">
-                            <button>Login</button>
+                            <button onClick={handleLogIn}>Login</button>
                             <div onClick={handleSignUp}>
                                 <p>Request to become a Member!</p>
                             </div>
