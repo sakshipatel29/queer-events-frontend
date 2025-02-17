@@ -5,6 +5,7 @@ import { authModalState } from '../../atoms/authModal';
 import './AuthModal.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { userAtomState } from '../../atoms/userAtom';
 
 const AuthModal = () => {
     const navigate = useNavigate();
@@ -14,6 +15,7 @@ const AuthModal = () => {
         password: "",
     })
     const [logInErrorMsg, setLogInErrorMsg] = useState("");
+    const [userStateValue, setUserStateValue] = useRecoilState(userAtomState);
 
     const handleClose = () => {
         setModalState(prev => ({
@@ -46,15 +48,15 @@ const AuthModal = () => {
         if( email && password ){
             const res = await axios.post(process.env.REACT_APP_LOGIN, user);
             setLogInErrorMsg(res.data.message);
-            if(res.data.user){
-                console.log(user);
-                setModalState(prev => ({
-                    ...prev,
-                    open: false,
-                }));
-            }
+            console.log(logInErrorMsg);
+            setUserStateValue({
+                name: res.data.data.name,
+                email: res.data.data.email,
+            })
         }
     }
+
+    console.log(userStateValue);
 
     return (
         <>
