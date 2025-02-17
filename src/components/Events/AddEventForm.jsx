@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import './AddEventForm.css';
 import axios from 'axios';
+import {useRecoilState} from 'recoil';
+import { userAtomState } from '../../atoms/userAtom';
 import { useNavigate } from 'react-router-dom';
+import { authModalState } from '../../atoms/authModal';
 
 const AddEventForm = ({setUpdate}) => {
     const navigate = useNavigate();
+    const [userStateValue] = useRecoilState(userAtomState);
+    const setAuthModalState = useRecoilState(authModalState);
     const [eventInput, setEventInput] = useState({
         eventName: "",
         description: "",
@@ -18,6 +23,13 @@ const AddEventForm = ({setUpdate}) => {
         eventURL: "",
         price: 0,
     });
+
+    if(!userStateValue){
+        setAuthModalState({
+            open: true,
+            view: "login",
+        })
+    }
 
     const handleInput = (e) => {
         const { name, value } = e.target;
@@ -63,7 +75,10 @@ const AddEventForm = ({setUpdate}) => {
 
     return (
         <div className="add-event-container">
+        {userStateValue.name && (
+            <>
             <div className="form-header">
+                <h1>Hey {userStateValue.name}!</h1>
                 <h1>Add a New Event</h1>
             </div>
             <form className="event-form" onSubmit={handleSubmit}>
@@ -190,6 +205,7 @@ const AddEventForm = ({setUpdate}) => {
                     <button type="submit" className="submit-btn">Add Event</button>
                 </div>
             </form>
+            </>)}
         </div>
     );
 };

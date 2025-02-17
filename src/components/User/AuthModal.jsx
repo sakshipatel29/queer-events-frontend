@@ -40,19 +40,41 @@ const AuthModal = () => {
         navigate("/signup");
     }
 
+    const checkErrors = () => {
+        const { email, password } = user;
+
+        if(email.length < 8){
+            setLogInErrorMsg("Please enter valid email address!");
+        }
+        if(password.length < 8){
+            setLogInErrorMsg("Please enter password of length at least 8 characters.");
+        }
+        if(email.length < 8 && password.length < 8){
+            setLogInErrorMsg("Please enter email and password of length at least 8.")
+        }
+
+    }
+
     const handleLogIn = async (e) => {
         e.preventDefault();
 
         const { email, password } = user;
 
-        if( email && password ){
+        checkErrors();
+
+        if( email.length >= 8 && password.length >= 8 ){
             const res = await axios.post(process.env.REACT_APP_LOGIN, user);
             setLogInErrorMsg(res.data.message);
             console.log(logInErrorMsg);
             setUserStateValue({
                 name: res.data.data.name,
                 email: res.data.data.email,
-            })
+            });
+            setModalState(prev => ({
+                ...prev,
+                open: false,
+            }));
+            navigate("/add-event");
         }
     }
 
@@ -98,6 +120,7 @@ const AuthModal = () => {
                                 </div>
                             </form>
                         </div>
+                        {logInErrorMsg && <p>{logInErrorMsg}</p>}
                         <div className="auth-modal-buttons">
                             <button onClick={handleLogIn}>Login</button>
                             <div onClick={handleSignUp}>
