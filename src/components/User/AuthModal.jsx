@@ -52,7 +52,6 @@ const AuthModal = () => {
         if(email.length < 8 && password.length < 8){
             setLogInErrorMsg("Please enter email and password of length at least 8.")
         }
-
     }
 
     const handleLogIn = async (e) => {
@@ -63,6 +62,7 @@ const AuthModal = () => {
         checkErrors();
 
         if( email.length >= 8 && password.length >= 8 ){
+            setLogInErrorMsg("");
             const res = await axios.post(process.env.REACT_APP_LOGIN, user);
             setLogInErrorMsg(res.data.message);
             console.log(logInErrorMsg);

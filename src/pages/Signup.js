@@ -3,6 +3,8 @@ import Navbar from "../components/Navbar";
 import './Signup.css';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { userAtomState } from "../atoms/userAtom";
 
 const Signup = ({setRegisteredUser}) => {
 
@@ -13,6 +15,7 @@ const Signup = ({setRegisteredUser}) => {
         password: "",
     })
 
+    const [userStateValue, setUserStateValue] = useRecoilState(userAtomState);
     const [errorMessage, setErrorMessage] = useState("");
 
     const handleInput = (e) => { 
@@ -23,21 +26,48 @@ const Signup = ({setRegisteredUser}) => {
         })
     };
 
+    const checkErrors = () => {
+        const { name, email, password } = newUser;
+
+        if(name === ""){
+            setErrorMessage("Please enter name!");
+        }
+
+        if(email.length < 8){
+            setErrorMessage("Please enter valid email address!");
+        }
+        if(password.length < 8){
+            setErrorMessage("Please enter password of length at least 8 characters.");
+        }
+        if(email.length < 8 && password.length < 8){
+            setErrorMessage("Please enter email and password of length at least 8.")
+        }
+    }
+
     const handleSignUp = async (e) => {
         e.preventDefault();
         const { name, email, password} = newUser;
 
-        if( name && email && password ){
+        checkErrors();
+
+        if( name !== "" && email.length >= 8 && password.length >= 8 ){
+            setErrorMessage("");
             try {
                 const res = await axios.post(process.env.REACT_APP_SIGNUP, newUser);
-                setErrorMessage(res.data.message);
-                setRegisteredUser({
-                    name: name,
-                    email: email,
-                })
+                if(res.data.message === "Success!!"){
+                    setUserStateValue({
+                        name: name,
+                        email: email,
+                    })(res.data.message);
+                    navigate("/add-event");
+                }
+                // setRegisteredUser({
+                //     name: name,
+                //     email: email,
+                // })
                 navigate("/add-event");
                 if(res.status === 200){
-                    console.log("success");
+                    console.log("Success!!");
                 } 
             } catch (error) {
                 console.log(error);
