@@ -15,7 +15,7 @@ const AuthModal = () => {
         password: "",
     })
     const [logInErrorMsg, setLogInErrorMsg] = useState("");
-    const [userStateValue, setUserStateValue] = useRecoilState(userAtomState);
+    const [setUserStateValue] = useRecoilState(userAtomState);
 
     const handleClose = () => {
         setModalState(prev => ({
@@ -77,8 +77,6 @@ const AuthModal = () => {
             navigate("/add-event");
         }
     }
-
-    console.log(userStateValue);
 
     return (
         <>
