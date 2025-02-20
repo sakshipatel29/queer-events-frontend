@@ -1,0 +1,13 @@
+.home-container {
+    text-align: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+  }
+  
+  .no-events-message {
+    font-size: 18px;
+    color: #777;
+    margin-top: 20px;
+  }
+  
